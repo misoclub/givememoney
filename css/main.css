@@ -6,7 +6,7 @@ body {
 
 
 p.example1 {
-  font-size: 100px;
+  font-size: clamp(100px,14vw,200px);
 }
 
 .footer {
