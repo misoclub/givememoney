@@ -73,10 +73,10 @@ function startWork(startTime) {
 
     if (isNaN(jikyuu)) {
         alert("入力された時給が数値ではありません");
-        return;
+        return false;
     } else if (jikyuu == "") {
         alert("時給を入力してください");
-        return;
+        return false; 
     }
 
     // 秒給を計算。
@@ -102,12 +102,15 @@ function startWork(startTime) {
 
     timerId = setInterval(countUp, 1000);
     isStarted = true;
+
+    return true;
 }
 
 function stopWork() {
     clearInterval(timerId);
     isStarted = false;
     alert("稼いだお金は" + money + "円でした。\nおつかれさまでした！");
+    return true;
 }
 
 // 経過時間のテキストを返す。
@@ -128,7 +131,10 @@ $(function () {
         if (isStarted) {
             return;
         }
-        startWork(0);
+        if(!startWork(0))
+        {
+            return;
+        }
         save(startdate, true, jikyuu);
         $('#start').hide();
         $('#stop').show();
@@ -139,7 +145,10 @@ $(function () {
         if (!isStarted) {
             return;
         }
-        stopWork();
+        if(!stopWork())
+        {
+            return;
+        }
         save(startdate, false, jikyuu);
         $('#start').show();
         $('#stop').hide();
