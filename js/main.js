@@ -153,6 +153,12 @@ $(function () {
         $('#start').show();
         $('#stop').hide();
     });
+
+    $('#cacheclear').click(function() {
+        alert("保存してあるデータを削除します");
+        store.clearAll();
+        location.reload();
+    });
 });
 
 
